@@ -5,18 +5,7 @@
 {% block body %}
     <h1>Edit User</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <select name="roles[]" id="" class="form-control">
-            <option value="0">Выберите роль</option>
-            {% for role in roles %}
-                <option value="{{ role.id }}">{{ role.name }}</option>
-            {% endfor %}
-        </select>
-        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('user') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <a href="{{ path('user') }}" class="btn btn-info">Back to list</a>
 {% endblock %}

@@ -20,13 +20,13 @@ class UserType extends AbstractType
             ->add('email', null, [
                 'attr' => ['class' => 'form-control']
             ])
-            /*->add(
+            ->add(
                 'roles', ChoiceType::class, [
-                    'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => 'ROLE_USER', 'ROLE_CUSTOMER' => 'ROLE_CUSTOMER'],
+                    'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_REDACTOR' => 'ROLE_REDACTOR', 'ROLE_USER' => 'ROLE_USER'],
                     'expanded' => true,
                     'multiple' => true,
                 ]
-            )*/
+            )
         ;
     }
 

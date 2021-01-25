@@ -8,7 +8,7 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input id="login-username" type="email" class="form-control" name="email" value="" placeholder="email">
@@ -19,13 +19,6 @@
             <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
         </div>
 
-        <div class="input-group">
-            <div class="checkbox">
-                <label>
-                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                </label>
-            </div>
-        </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <div style="margin-top:10px" class="form-group">

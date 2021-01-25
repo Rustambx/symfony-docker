@@ -38,9 +38,6 @@
                             <a class="nav-link" href="{{ path('user') }}">Users</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('role') }}">Roles</a>
-                        </li>
-                        <li class="nav-item active">
                             <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                         </li>
                     {% else %}
@@ -64,7 +61,7 @@
 </main>
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <span>© {{ "now"|date("Y") }} All rights reserved</span>
+        <span>©<a href="https://github.com/Rustambx/">Rustambx</a> {{ "now"|date("Y") }} year</span>
     </div>
 </footer>
 

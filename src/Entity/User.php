@@ -13,11 +13,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-    }
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -31,12 +26,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(
-     *      name="user_roles",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
+     * @ORM\Column(type="json")
      */
     private $roles = [];
 
@@ -78,14 +68,18 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        /*dd($this->roles->get('name'));*/
-        return $this->roles->toArray();
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-        return  $this;
+
+        return $this;
     }
 
     /**
@@ -118,16 +112,5 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function addRole($role)
-    {
-        $this->roles[] = $role;
-        return $this;
-    }
-
-    public function removeRole(Role $role)
-    {
-        $this->roles->removeElement($role);
     }
 }

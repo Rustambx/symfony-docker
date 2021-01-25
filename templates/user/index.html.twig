@@ -11,8 +11,12 @@
             <th>Id</th>
             <th>Email</th>
             <th>Role</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_REDACTOR') %}
+                <th>Edit</th>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <th>Delete</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -21,9 +25,18 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-success">Edit</a>
+                    {% for role in user.roles %}
+                        {{ role }},
+                    {% endfor %}
                 </td>
-                {#<td>{{ include('user/_delete_form.html.twig') }}</td>#}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_REDACTOR') %}
+                    <td>
+                        <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-success">Edit</a>
+                    </td>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>{{ include('user/_delete_form.html.twig') }}</td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
