@@ -78,10 +78,11 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
+        /*dd($this->roles->get('name'));*/
         return $this->roles->toArray();
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
         return  $this;
@@ -119,9 +120,10 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function addRole(Role $role)
+    public function addRole($role)
     {
-        $this->roles->add($role);
+        $this->roles[] = $role;
+        return $this;
     }
 
     public function removeRole(Role $role)

@@ -7,7 +7,7 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <select name="roles" id="" class="form-control">
+        <select name="roles[]" id="" class="form-control">
             <option value="0">Выберите роль</option>
             {% for role in roles %}
                 <option value="{{ role.id }}">{{ role.name }}</option>
