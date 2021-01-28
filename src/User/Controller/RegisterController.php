@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\User\Controller;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Security\LoginFormAuthenticator;
+use App\User\Entity\User;
+use App\User\Form\Type\RegistrationFormType;
+use App\User\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

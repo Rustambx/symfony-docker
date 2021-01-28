@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Form;
+namespace App\User\Form\Type;
 
-use App\Entity\User;
+use App\User\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,21 +16,11 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', null, [
+            ->add('email', EmailType::class, [
                 'attr' => ['class' => 'form-control']
             ])
             ->add('password', PasswordType::class, [
                 'attr' => ['class' => 'form-control'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Пожалуйста, введите пароль'
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Ваш пароль должен содержать не менее {{limit}} символов.',
-                        'max' => 255
-                    ])
-                ],
             ]);
     }
 

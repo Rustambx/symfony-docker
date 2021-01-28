@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\User\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\User\Entity\User;
+use App\User\Form\Type\UserEditType;
+use App\User\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +20,7 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository)
     {
+        $this->getUser();
         return $this->render('user/index.html.twig', [
            'users' => $userRepository->findAll()
         ]);
@@ -31,7 +32,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
