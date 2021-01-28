@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\Tests\Functional;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginControllerTest extends WebTestCase
+abstract class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
-    public function testSomething()
+    /**
+     * @return KernelBrowser
+     */
+    protected function createClientForAdmin(): KernelBrowser
     {
         static::ensureKernelShutdown();
         $client = static::createClient();
@@ -19,11 +22,13 @@ class LoginControllerTest extends WebTestCase
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
         $client->submitForm('Login', [
-            'email' => 'admin@mail.ru',
-            'password' => '12345678',
+            'email' => 'admin@email.com',
+            'password' => 'admin123',
         ]);
-        /*$crawler = $client->followRedirect();*/
+        $crawler = $client->followRedirect();
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        /*$this->assertEquals('Hello', $crawler->filter('h1')->first()->text());*/
+        $this->assertEquals('Hello', $crawler->filter('h1')->first()->text());
+
+        return $client;
     }
 }

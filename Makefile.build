@@ -1,0 +1,58 @@
+COMPOSER_OPTIONS =
+ifeq ("$(ENV)", "prod")
+COMPOSER_OPTIONS = --no-dev
+endif
+
+composer-install:
+	@echo "====================="
+	@echo "Composer install"
+	@echo "====================="
+	docker-compose -f docker-compose.builder.yaml run --rm app-builder bash -c 'cd ${DOCKER_WORK_DIR} && composer install ${COMPOSER_OPTIONS}'
+
+clear-cache:
+	@echo "====================="
+	@echo "Clear cache"
+	@echo "====================="
+	docker-compose -f docker-compose.builder.yaml run --rm app-builder bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/console cache:clear --env=${ENV}'
+
+php-cs-fix:
+	@echo "====================="
+	@echo "Running test static"
+	@echo "====================="
+	docker-compose -f docker-compose.builder.yaml run --rm app-builder bash -c 'cd ${DOCKER_WORK_DIR} && php-cs-fixer fix src tests database --config=.php_cs'
+
+test-functional:
+	@echo "====================="
+	@echo "Running test functional"
+	@echo "====================="
+	docker-compose -f docker-compose.builder.yaml run --rm app-builder bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/phpunit --configuration=phpunit.functional.xml'
+
+test-static:
+	@echo "====================="
+	@echo "Running test static"
+	@echo "====================="
+	docker-compose -f docker-compose.builder.yaml run --rm app-builder bash -c 'cd ${DOCKER_WORK_DIR} && php-cs-fixer fix src tests database --config=.php_cs --dry-run --using-cache=no'
+
+migrate-up:
+	@echo "====================="
+	@echo "Run migration"
+	@echo "====================="
+	docker-compose -f docker-compose.yaml run --rm app-php bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/console doctrine:migrations:migrate -n --env=${ENV}'
+
+migrate-down:
+	@echo "====================="
+	@echo "Run migration"
+	@echo "====================="
+	docker-compose -f docker-compose.yaml run --rm app-php bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/console doctrine:migrations:migrate prev -n --env=${ENV}'
+
+migrate-generate:
+	@echo "====================="
+	@echo "Generate migration"
+	@echo "====================="
+	docker-compose -f docker-compose.yaml run --rm app-php bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/console doctrine:migrations:generate'
+
+load-fixtures:
+	@echo "====================="
+	@echo "Load fixtures"
+	@echo "====================="
+	docker-compose -f docker-compose.yaml run --rm app-php bash -c 'cd ${DOCKER_WORK_DIR} && php ./bin/console doctrine:database:import tests/fixtures/data.sql --env=${ENV}'
