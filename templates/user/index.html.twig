@@ -12,10 +12,7 @@
             <th>Email</th>
             <th>Role</th>
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_REDACTOR') %}
-                <th>Edit</th>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <th>Delete</th>
+                <th>Action</th>
             {% endif %}
         </tr>
         </thead>
@@ -33,9 +30,6 @@
                     <td>
                         <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-success">Edit</a>
                     </td>
-                {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <td>{{ include('user/_delete_form.html.twig') }}</td>
                 {% endif %}
             </tr>
         {% else %}
