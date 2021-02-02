@@ -5,24 +5,24 @@ namespace App\User\Controller;
 use App\User\Entity\User;
 use App\User\Form\Type\UserEditType;
 use App\User\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends AbstractController
 {
     /**
-     * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/user", name="user")
      */
     public function index(UserRepository $userRepository)
     {
         $this->getUser();
+
         return $this->render('user/index.html.twig', [
-           'users' => $userRepository->findAll()
+            'users' => $userRepository->findAll(),
         ]);
     }
 
@@ -61,6 +61,4 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user');
     }
-
-
 }
