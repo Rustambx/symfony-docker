@@ -9,5 +9,6 @@ class LoginControllerTest extends WebTestCase
     public function testLogin()
     {
         $client = $this->createClientForAdmin();
+        $this->assertEquals('Hello', $client->getCrawler()->filter('h1')->first()->text());
     }
 }

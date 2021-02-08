@@ -7,9 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
-    /**
-     * @return KernelBrowser
-     */
     protected function createClientForAdmin(): KernelBrowser
     {
         static::ensureKernelShutdown();

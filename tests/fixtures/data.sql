@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 --
 INSERT INTO `user` (`id`, `email`, `roles`, `password`)
 VALUES
-(1, 'admin@email.com', X'5B22524F4C455F41444D494E225D', '$2y$12$xFDYzbXHu7wFm29ZODINYO.95GH6k5Zp.bFL6yJrgUbzq3oRMkP1e');
+(1, 'admin@email.com', '["ROLE_ADMIN"]', '$2y$12$xFDYzbXHu7wFm29ZODINYO.95GH6k5Zp.bFL6yJrgUbzq3oRMkP1e');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,13 +10,13 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function home(): Response
     {
         $user = $this->getUser();
+
         return $this->render('home.html.twig', [
-           'controller' => 'HomeController'
+            'controller' => 'HomeController',
         ]);
     }
 }
