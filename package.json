@@ -1,0 +1,26 @@
+{
+  "name": "my-symfony",
+  "version": "1.0.0",
+  "description": "Cypress Test",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rustambx/symfony-docker.git"
+  },
+  "author": "Rustambx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rustambx/symfony-docker/issues"
+  },
+  "homepage": "https://github.com/Rustambx/symfony-docker#readme",
+  "devDependencies": {
+    "cypress": "^6.4.0",
+    "cypress-file-upload": "^5.0.2"
+  }
+}

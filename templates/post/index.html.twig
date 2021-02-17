@@ -10,7 +10,6 @@
         <tr>
             <th>Id</th>
             <th>Title</th>
-            <th>Text</th>
             <th>Image</th>
             <th>Author</th>
             <th>Actions</th>
@@ -21,7 +20,6 @@
             <tr>
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.text }}</td>
                 <td>
                     <img src="{{ asset('uploads/post/images/' ~ post.image) }}" alt="">
                 </td>
@@ -29,6 +27,7 @@
                 <td>
                     <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">Show</a>
                     <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-success">Edit</a>
+                    {{ include('post/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -39,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('post_create') }}" class="btn btn-primary">Create new</a>
+    <a href="{{ path('post_create') }}" data-test="create-new" class="btn btn-primary">Create new</a>
 {% endblock %}

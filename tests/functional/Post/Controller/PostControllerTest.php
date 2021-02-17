@@ -28,15 +28,6 @@ class PostControllerTest extends WebTestCase
             ->getManager();
     }
 
-    public function testPostIndex()
-    {
-        $client = $this->createClientForAdmin();
-        $client->request('GET', '/post');
-        $this->assertEquals('Post index', $client->getCrawler()->filter('html h1')->first()->text());
-        $link = $client->getCrawler()->selectLink('Show')->link();
-        $client->click($link);
-    }
-
     public function testPostShow()
     {
         $email = \sprintf('admin_%s@email.ru', \time());
@@ -103,6 +94,15 @@ class PostControllerTest extends WebTestCase
             'post[author]' => $user->getId(),
             'post[image]' => $image,
         ]);
+    }
+
+    public function testPostIndex()
+    {
+        $client = $this->createClientForAdmin();
+        $client->request('GET', '/post');
+        $this->assertEquals('Post index', $client->getCrawler()->filter('html h1')->first()->text());
+        $link = $client->getCrawler()->selectLink('Show')->link();
+        $client->click($link);
     }
 
     public function testPostEdit()

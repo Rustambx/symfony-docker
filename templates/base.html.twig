@@ -29,26 +29,26 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+                <a class="navbar-brand" data-test="home" href="{{ path('home') }}">Home</a>
             {% endif %}
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('user') }}">Users</a>
+                            <a class="nav-link" data-test="user" href="{{ path('user') }}">Users</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('post') }}">Posts</a>
+                            <a class="nav-link" data-test="post" href="{{ path('post') }}">Posts</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+                            <a class="nav-link" data-test="logout" href="{{ path('logout') }}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('register') }}">Register</a>
+                            <a class="nav-link" data-test="register" href="{{ path('register') }}">Register</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('login') }}">Login</a>
+                            <a class="nav-link" data-test="login" href="{{ path('login') }}">Login</a>
                         </li>
                     {% endif %}
                 </ul>

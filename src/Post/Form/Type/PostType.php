@@ -22,8 +22,8 @@ class PostType extends AbstractType
                     new File([
                         'maxSize' => '4096k',
                         'mimeTypes' => [
-                            'image/jpeg',
                             'image/png',
+                            'image/jpeg',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid jpeg and png image',
                     ])

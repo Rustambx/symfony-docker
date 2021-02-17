@@ -24,16 +24,19 @@ class Post
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Type("string")
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $text;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
      */
     private $image;
 
@@ -49,6 +52,7 @@ class Post
      *
      * @ORM\ManyToOne(targetEntity="App\User\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $author;
 

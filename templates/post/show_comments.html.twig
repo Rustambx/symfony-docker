@@ -43,9 +43,9 @@
                     <div class="card-body">
                         {{ form_start(form) }}
                         {{ form_label(form.content, 'Content')  }}
-                        {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': 3, 'data-test' : 'content'}}) }}
                         <br>
-                        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        <button class="btn btn-primary" data-test="save">{{ button_label|default('Save') }}</button>
                         {{ form_end(form) }}
                     </div>
                 </div>

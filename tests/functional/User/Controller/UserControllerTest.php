@@ -52,7 +52,7 @@ class UserControllerTest extends WebTestCase
         $client->request('GET', \sprintf('/user/edit/%d', $user->getId()));
         $this->assertEquals('Edit User', $client->getCrawler()->filter('html h1')->first()->text());
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        $client->submitForm('Update', [
+        $client->submitForm('Save', [
             'user_edit[roles][0]' => 'ROLE_ADMIN',
         ]);
     }
